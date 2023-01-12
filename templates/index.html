@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chat Client</title>
+    <style>
+      #messages {
+        border: 1px solid black;
+        height: 300px;
+        overflow: scroll;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Chat Client</h1>
+    <div id="messages"></div>
+    <form onsubmit="event.preventDefault(); sendMessage();">
+        <input type="text" id="recipient" placeholder="Recipient's name">
+        <input type="text" id="message">
+        <button type="submit">Send</button>
+        <button type="button" onclick="requestOnlineClients()">Online Clients</button>
+    </form>
+    <div id="online-clients">
+      <h2>Online Clients</h2>
+      <ul id="online-clients-list"></ul>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.min.js"></script>
+    <script>
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+        
+        socket.on('connect', function() {
+            // Send the client's name to the server when the connection is established
+            var name = prompt("What's your name?");
+            console.log(name)
+            socket.emit('register_name', {'message': name});
+        });
+        
+        socket.on('join_leave', function(data) {
+          var msg = document.createElement("p");
+          var text = document.createTextNode(data['message']);
+          msg.appendChild(text);
+          document.getElementById("messages").appendChild(msg);
+        });
+        
+        socket.on('broadcast_message', function(data) {
+          var msg = document.createElement("p");
+          var message = data['sender'] + "(Everyone): " + data['message'];
+          var text = document.createTextNode(message);
+          msg.appendChild(text);
+          document.getElementById("messages").appendChild(msg);
+        });
+        
+        socket.on('private_message', function(data) {
+          var msg = document.createElement("p");
+          var message = data['sender'] + "(Private to you): " + data['message'];
+          var text = document.createTextNode(message);
+          msg.appendChild(text);
+          document.getElementById("messages").appendChild(msg);
+        });
+    
+        socket.on('online_clients_list', function(data) {
+          console.log(data)
+          updateOnlineClientsUI(data['clients'])
+        });
+
+        function updateOnlineClientsUI(clients) {
+          let onlineClientsList = document.getElementById("online-clients-list");
+          onlineClientsList.innerHTML = "";
+          for (const client of clients) {
+            let clientItem = document.createElement("li");
+            let text = document.createTextNode(client["name"]);
+            clientItem.appendChild(text);
+            onlineClientsList.appendChild(clientItem);
+          }
+        }
+    
+        function sendPrivateMessage(recipient) {
+            var message = document.getElementById("message").value;
+            socket.emit('private_message', {"recipient": recipient, "message": message });
+            document.getElementById("message").value = "";
+        }
+    
+        function sendMessage() {
+            var recipient = document.getElementById("recipient").value;
+            if (recipient) {
+                sendPrivateMessage(recipient);
+            } else {
+                var message = document.getElementById("message").value;
+                socket.emit('broadcast_message', {"message": message});
+            }
+            document.getElementById("message").value = "";
+            document.getElementById("recipient").value = "";
+        }
+        function requestOnlineClients() {
+            socket.emit('online_clients_list', {})
+        }
+    </script>    
+  </body>
+</html>
