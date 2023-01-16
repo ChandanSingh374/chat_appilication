@@ -4,24 +4,24 @@ import websockets
 
 connected_clients = {}
 
-async def broadcast(message, type):
+async def broadcast(message, message_type):
     """
     This function broadcast the received message to all the connected clients
     """
-    message = {"type": type, "message": message}
+    message = {"type": message_type, "message": message}
     message = json.dumps(message)
     for name in connected_clients:
         await connected_clients[name].send(message)
 
-async def send_custom_response(name, message):
+async def send_custom_response(recipant_name, sender_name, message):
     """
     This function sends a custom message to the specific client
     """
     for client in connected_clients:
-        if name == client:
-            message = {"type": "private_message", "message": message}
+        if recipant_name == client:
+            message = {"type": "private_message", "message": message, "sender_name": sender_name}
             message = json.dumps(message)
-            await connected_clients[name].send(message)
+            await connected_clients[recipant_name].send(message)
 
 async def handle_client(client, path):
     """
@@ -33,21 +33,21 @@ async def handle_client(client, path):
             if message["type"] == "register_name":
                 name = message["message"]
                 connected_clients[name] = client
-                await broadcast(f'{name} has joined the chat', "join_leave")
+                await broadcast(f'{name} has joined the chat', "join_chat")
                 
             elif message["type"] == "private_message":
                 recipient = message["recipient"]
                 message = message["message"]
-                await send_custom_response(recipient, f'{name}: {message}')
+                await send_custom_response(recipient, name, message)
                 
             elif message["type"] == "online_clients_query":
                 online_clients = list(connected_clients.keys())
                 await client.send(json.dumps({"type": "online_clients_response", "clients": online_clients}))
             else:
-                await broadcast(f'{name}: {message["message"]}', "broadcasted_message")
+                await broadcast(f'{name}: {message["message"]}', "broadcast_message")
     finally:
         del connected_clients[name]
-        await broadcast(f'{name} has left the chat', "join_leave")
+        await broadcast(f'{name} has left the chat', "left_chat")
 
 def main():
     start_server = websockets.serve(handle_client, "localhost", 6789)
