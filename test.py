@@ -2,6 +2,8 @@ import unittest
 import json
 import asyncio
 import websockets
+import os
+import subprocess
 
 class TestServer(unittest.TestCase):
     async def receive_with_timeout(self, websocket, timeout):

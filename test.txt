@@ -1,0 +1,145 @@
+kill: usage: kill [-s sigspec | -n signum | -sigspec] pid | jobspec ... or kill -l [sigspec]
+/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/subprocess.py:942: ResourceWarning: subprocess 42677 is still running
+  _warn("subprocess %s is still running" % self.pid,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+Ekill: usage: kill [-s sigspec | -n signum | -sigspec] pid | jobspec ... or kill -l [sigspec]
+/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/subprocess.py:942: ResourceWarning: subprocess 42683 is still running
+  _warn("subprocess %s is still running" % self.pid,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+Ekill: usage: kill [-s sigspec | -n signum | -sigspec] pid | jobspec ... or kill -l [sigspec]
+/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/subprocess.py:942: ResourceWarning: subprocess 42688 is still running
+  _warn("subprocess %s is still running" % self.pid,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+Ekill: usage: kill [-s sigspec | -n signum | -sigspec] pid | jobspec ... or kill -l [sigspec]
+/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/subprocess.py:942: ResourceWarning: subprocess 42693 is still running
+  _warn("subprocess %s is still running" % self.pid,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+Ekill: usage: kill [-s sigspec | -n signum | -sigspec] pid | jobspec ... or kill -l [sigspec]
+/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/subprocess.py:942: ResourceWarning: subprocess 42698 is still running
+  _warn("subprocess %s is still running" % self.pid,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+E
+======================================================================
+ERROR: test_broadcast_message (test.TestServer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/chandankumarsingh/Documents/maxwell/chat_application/test.py", line 41, in test_broadcast_message
+    asyncio.run(test_case())
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/asyncio/runners.py", line 43, in run
+    return loop.run_until_complete(main)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/Users/chandankumarsingh/Documents/maxwell/chat_application/test.py", line 31, in test_case
+    async with websockets.connect("ws://localhost:6789") as websocket1:
+  File "/Users/chandankumarsingh/Library/Python/3.8/lib/python/site-packages/websockets/legacy/client.py", line 642, in __aenter__
+    return await self
+  File "/Users/chandankumarsingh/Library/Python/3.8/lib/python/site-packages/websockets/legacy/client.py", line 659, in __await_impl_timeout__
+    return await asyncio.wait_for(self.__await_impl__(), self.open_timeout)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/asyncio/tasks.py", line 483, in wait_for
+    return fut.result()
+  File "/Users/chandankumarsingh/Library/Python/3.8/lib/python/site-packages/websockets/legacy/client.py", line 663, in __await_impl__
+    _transport, _protocol = await self._create_connection()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/asyncio/base_events.py", line 1033, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+OSError: Multiple exceptions: [Errno 61] Connect call failed ('::1', 6789, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 6789)
+
+======================================================================
+ERROR: test_join_chat (test.TestServer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/chandankumarsingh/Documents/maxwell/chat_application/test.py", line 27, in test_join_chat
+    asyncio.run(test_case())
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/asyncio/runners.py", line 43, in run
+    return loop.run_until_complete(main)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/Users/chandankumarsingh/Documents/maxwell/chat_application/test.py", line 22, in test_case
+    async with websockets.connect("ws://localhost:6789") as websocket:
+  File "/Users/chandankumarsingh/Library/Python/3.8/lib/python/site-packages/websockets/legacy/client.py", line 642, in __aenter__
+    return await self
+  File "/Users/chandankumarsingh/Library/Python/3.8/lib/python/site-packages/websockets/legacy/client.py", line 659, in __await_impl_timeout__
+    return await asyncio.wait_for(self.__await_impl__(), self.open_timeout)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/asyncio/tasks.py", line 483, in wait_for
+    return fut.result()
+  File "/Users/chandankumarsingh/Library/Python/3.8/lib/python/site-packages/websockets/legacy/client.py", line 663, in __await_impl__
+    _transport, _protocol = await self._create_connection()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/asyncio/base_events.py", line 1033, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+OSError: Multiple exceptions: [Errno 61] Connect call failed ('::1', 6789, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 6789)
+
+======================================================================
+ERROR: test_left_chat (test.TestServer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/chandankumarsingh/Documents/maxwell/chat_application/test.py", line 89, in test_left_chat
+    asyncio.run(test_case())
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/asyncio/runners.py", line 43, in run
+    return loop.run_until_complete(main)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/Users/chandankumarsingh/Documents/maxwell/chat_application/test.py", line 79, in test_case
+    async with websockets.connect("ws://localhost:6789") as websocket1:
+  File "/Users/chandankumarsingh/Library/Python/3.8/lib/python/site-packages/websockets/legacy/client.py", line 642, in __aenter__
+    return await self
+  File "/Users/chandankumarsingh/Library/Python/3.8/lib/python/site-packages/websockets/legacy/client.py", line 659, in __await_impl_timeout__
+    return await asyncio.wait_for(self.__await_impl__(), self.open_timeout)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/asyncio/tasks.py", line 483, in wait_for
+    return fut.result()
+  File "/Users/chandankumarsingh/Library/Python/3.8/lib/python/site-packages/websockets/legacy/client.py", line 663, in __await_impl__
+    _transport, _protocol = await self._create_connection()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/asyncio/base_events.py", line 1033, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+OSError: Multiple exceptions: [Errno 61] Connect call failed ('::1', 6789, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 6789)
+
+======================================================================
+ERROR: test_online_clients_query (test.TestServer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/chandankumarsingh/Documents/maxwell/chat_application/test.py", line 75, in test_online_clients_query
+    asyncio.run(test_case())
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/asyncio/runners.py", line 43, in run
+    return loop.run_until_complete(main)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/Users/chandankumarsingh/Documents/maxwell/chat_application/test.py", line 63, in test_case
+    async with websockets.connect("ws://localhost:6789") as websocket1:
+  File "/Users/chandankumarsingh/Library/Python/3.8/lib/python/site-packages/websockets/legacy/client.py", line 642, in __aenter__
+    return await self
+  File "/Users/chandankumarsingh/Library/Python/3.8/lib/python/site-packages/websockets/legacy/client.py", line 659, in __await_impl_timeout__
+    return await asyncio.wait_for(self.__await_impl__(), self.open_timeout)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/asyncio/tasks.py", line 483, in wait_for
+    return fut.result()
+  File "/Users/chandankumarsingh/Library/Python/3.8/lib/python/site-packages/websockets/legacy/client.py", line 663, in __await_impl__
+    _transport, _protocol = await self._create_connection()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/asyncio/base_events.py", line 1033, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+OSError: Multiple exceptions: [Errno 61] Connect call failed ('::1', 6789, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 6789)
+
+======================================================================
+ERROR: test_private_message (test.TestServer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/chandankumarsingh/Documents/maxwell/chat_application/test.py", line 59, in test_private_message
+    asyncio.run(test_case())
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/asyncio/runners.py", line 43, in run
+    return loop.run_until_complete(main)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/Users/chandankumarsingh/Documents/maxwell/chat_application/test.py", line 46, in test_case
+    async with websockets.connect("ws://localhost:6789") as websocket1:
+  File "/Users/chandankumarsingh/Library/Python/3.8/lib/python/site-packages/websockets/legacy/client.py", line 642, in __aenter__
+    return await self
+  File "/Users/chandankumarsingh/Library/Python/3.8/lib/python/site-packages/websockets/legacy/client.py", line 659, in __await_impl_timeout__
+    return await asyncio.wait_for(self.__await_impl__(), self.open_timeout)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/asyncio/tasks.py", line 483, in wait_for
+    return fut.result()
+  File "/Users/chandankumarsingh/Library/Python/3.8/lib/python/site-packages/websockets/legacy/client.py", line 663, in __await_impl__
+    _transport, _protocol = await self._create_connection()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/asyncio/base_events.py", line 1033, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+OSError: Multiple exceptions: [Errno 61] Connect call failed ('::1', 6789, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 6789)
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.153s
+
+FAILED (errors=5)
